@@ -1,23 +1,27 @@
 class TicketsController < ApplicationController
+
   def index
     @tickets = Ticket.all
   end
 
-  def show
+  def delete
+    Ticket.destroy(params[:id])
   end
 
   def new
   end
 
   def create
-  end
+    @tickets_hash = params["features"]
+    @tickets = []
 
-  def edit
-  end
+    (0..4).each do |index|
+      @tickets << {:name => @tickets_hash["#{index}"]["name"],
+                   :description => @tickets_hash["#{index}"]["description"]}
+    end
 
-  def delete
-  end
-
-  def update
+    pivotal_service = PivotalService.new(@tickets)
+    pivotal_service.raise_tickets
+    pivotal_service.save_tickets
   end
 end
