@@ -1,2 +1,14 @@
-<h1>Tickets#new</h1>
-<p>Find me in app/views/tickets/new.html.erb</p>
+<h1>Add feature tickets</h1>
+
+
+<%= form_tag tickets_path do %>
+  <% (0..4).each do |index| %>
+    <h4><%= "Ticket ##{index+1}" %></h4>
+    <span>Name</span>
+    <%= text_field_tag "features[#{index}][name]" %>
+    <span>Description</span>
+    <%= text_area_tag "features[#{index}][description]" %>
+  <% end %>
+
+  <%= submit_tag "Submit"%>
+<% end %>
