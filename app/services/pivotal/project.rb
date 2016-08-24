@@ -1,4 +1,4 @@
-class Project
+class Pivotal::Project
 
   attr_reader :id, :stories
 
@@ -16,6 +16,7 @@ class Project
                      description: feat[:description] }
       @stories << project.stories.create(story_hash)
     end
+    puts "stories: #{@stories}"
   end
 end
 
